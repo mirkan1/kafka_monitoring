@@ -1,6 +1,7 @@
 # Custom kafka healtcheck plugin for site24x7
-* Author : TechstyleOS
-* In order to learn about JMX Service URLs and how to configure them, please refer to the following link: https://docs.oracle.com/cd/E19159-01/819-7758/gcnqf/index.html
+### Author : TechstyleOS
+### Language : Python
+### OS : Linux
 
 ## Description :
 * This plugin monitors the health of kafka cluster. 
@@ -24,3 +25,6 @@ KAFKA_TOPIC_NAME=quickstart-events
 ZOOKEPER_HOST=localhost
 ZOOKEPER_JMX_PORT=9999
 ```
+
+## Important Notes:
+* In order to learn about JMX Service URLs and how to configure them, please refer to the following link: https://docs.oracle.com/cd/E19159-01/819-7758/gcnqf/index.html
