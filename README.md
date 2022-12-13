@@ -1,7 +1,9 @@
 # Custom kafka healtcheck plugin for site24x7
-### Author : TechstyleOS
-### Language : Python
-### OS : Linux
+Author : TechstyleOS
+
+Language : Python
+
+OS : Linux
 
 ## Description :
 * This plugin monitors the health of kafka cluster. 
