@@ -1,8 +1,6 @@
 # Custom kafka healtcheck plugin for site24x7
 Author : TechstyleOS
 
-Language : Python
-
 OS : Linux
 
 ## Description :
