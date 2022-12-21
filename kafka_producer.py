@@ -9,14 +9,15 @@ producer = KafkaProducer(
     bootstrap_servers="localhost:9092",
     client_id='console-producer',
 )
-for _ in range(100):
-    producer.send('quickstart-events', b'some_message_bytes')
-producer.flush()
-print("producer", producer.bootstrap_connected())
-
-# import time
-# # run producer forever
-# while True:
+# for _ in range(100):
 #     producer.send('quickstart-events', b'some_message_bytes')
-#     producer.flush()
-#     time.sleep(3)
+# producer.flush()
+# print("producer", producer.bootstrap_connected())
+
+import time
+# run producer forever
+while True:
+    producer.send('quickstart-events', b'some_message_bytes')
+    producer.flush()
+    print("producer", producer.bootstrap_connected())
+    time.sleep(5)

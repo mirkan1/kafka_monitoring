@@ -57,6 +57,9 @@ class appname:
                     
                 jmxQuery = [jmx.JMXQuery(metric_queries[metric])]
                 metric_result = jmxConnection.query(jmxQuery)
+                if len(metric_result) == 0:
+                    self.maindata[metric]=-1
+                    continue
                 data=metric_result[0].value
                 if math.isnan(data):
                     self.maindata[metric]=-1
@@ -68,9 +71,6 @@ class appname:
             self.maindata["Partition No."]=f"Partition No : {self.kafka_consumer_partition}"
             self.maindata["Client ID"]=self.kafka_consumer_client_id
 
-
-
-
             applog={}
             if(self.logsenabled in ['True', 'true', '1']):
                     applog["logs_enabled"]=True
@@ -80,8 +80,6 @@ class appname:
                     applog["logs_enabled"]=False
             self.maindata['applog'] = applog
 
-
-
         except Exception as e: 
             self.maindata['msg']=str(e)
             self.maindata['status']=0
@@ -90,12 +88,10 @@ class appname:
         return self.maindata
 
 
-
-
 if __name__=="__main__":
 
     kafka_consumer_host="localhost"
-    kafka_consumer_jmx_port=9983
+    kafka_consumer_jmx_port=9092
     kafka_consumer_partition=0
     kafka_topic_name="quickstart-events"
     kafka_client_id="console-consumer"

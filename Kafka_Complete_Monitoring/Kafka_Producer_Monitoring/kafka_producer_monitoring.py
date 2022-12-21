@@ -55,6 +55,9 @@ class appname:
                     
                 jmxQuery = [jmx.JMXQuery(metric_queries[metric])]
                 metric_result = jmxConnection.query(jmxQuery)
+                if len(metric_result)==0:
+                    self.maindata[metric]=-1
+                    continue
                 data=metric_result[0].value
                 if math.isnan(data):
                     self.maindata[metric]=-1
@@ -87,7 +90,7 @@ class appname:
 if __name__=="__main__":
 
     kafka_producer_host="localhost"
-    kafka_producer_jmx_port=9982
+    kafka_producer_jmx_port=1999
     kafka_producer_client_id="console-producer"
 
     import argparse

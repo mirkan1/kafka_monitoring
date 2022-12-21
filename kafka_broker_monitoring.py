@@ -58,6 +58,7 @@ class KafkaBroker:
                 jmx_query = [jmx.JMXQuery(value)]
                 metric_result = jmx_connection.query(jmx_query)
                 if len(metric_result) == 0:
+                    self.main_data[key]=-1
                     continue
                 self.main_data[key]=metric_result[0].value
             self.main_data["Topic Name"]=self.kafka_topic_name
