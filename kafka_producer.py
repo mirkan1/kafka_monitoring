@@ -1,3 +1,7 @@
+'''
+    This script is equivalent to the following command:
+    bash kafka_2.12-3.3.1/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic quickstart-events
+'''
 import os
 from dotenv import load_dotenv
 from kafka import KafkaProducer
@@ -6,13 +10,9 @@ server = f'{os.environ.get("KAFKA_HOST")}:{os.environ.get("KAFKA_JMX_PORT")}'
 print("server", server)
 producer = KafkaProducer(
     security_protocol="PLAINTEXT",
-    bootstrap_servers="localhost:9092",
+    bootstrap_servers=["localhost:9092"],
     client_id='console-producer',
 )
-# for _ in range(100):
-#     producer.send('quickstart-events', b'some_message_bytes')
-# producer.flush()
-# print("producer", producer.bootstrap_connected())
 
 import time
 # run producer forever
