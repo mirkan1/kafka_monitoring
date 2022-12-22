@@ -28,3 +28,6 @@ ZOOKEPER_JMX_PORT=9999
 
 ## Important Notes:
 * In order to learn about JMX Service URLs and how to configure them, please refer to the following link: https://docs.oracle.com/cd/E19159-01/819-7758/gcnqf/index.html
+
+## install VisualVM for monitoring local jmx ports
+https://visualvm.github.io/download.html
