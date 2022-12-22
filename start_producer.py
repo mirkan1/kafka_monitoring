@@ -17,7 +17,7 @@ producer = KafkaProducer(
 import time
 # run producer forever
 while True:
-    producer.send('quickstart-events', b'some_message_bytes')
+    producer.send('my-topic', b'some_message_bytes')
     producer.flush()
     print("producer", producer.bootstrap_connected())
     time.sleep(5)
