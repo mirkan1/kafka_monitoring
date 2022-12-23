@@ -7,17 +7,16 @@ from dotenv import load_dotenv
 from kafka import KafkaProducer
 load_dotenv()
 server = f'{os.environ.get("KAFKA_HOST")}:{os.environ.get("KAFKA_JMX_PORT")}'
-print("server", server)
 producer = KafkaProducer(
     security_protocol="PLAINTEXT",
-    bootstrap_servers=["localhost:9092"],
+    bootstrap_servers=["localhost:9092", "localhost:1999"], # cant connect to 1999
     client_id='console-producer',
 )
 
 import time
 # run producer forever
 while True:
-    producer.send('my-topic', b'some_message_bytes')
+    producer.send('quickstart-events', b'some_message_bytes')
     producer.flush()
     print("producer", producer.bootstrap_connected())
     time.sleep(5)
