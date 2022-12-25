@@ -2,7 +2,7 @@ import time
 import jmxquery
 
 # Set the JMX connection parameters
-jmx_url = 'service:jmx:rmi:///jndi/rmi://localhost:1999/jmxrmi'
+jmx_url = 'service:jmx:rmi:///jndi/rmi://localhost:9983/jmxrmi'
 jmx_user = None
 jmx_password = None
 
@@ -19,7 +19,7 @@ attribute = '*'
 poll_interval = 5
 
 # Set the consumer group ID
-consumer_group_id = 'console-producer'
+consumer_group_id = 'console-consumer'
 
 # Run the monitoring loop indefinitely
 while True:
@@ -33,7 +33,8 @@ while True:
     result = connection.query(query)
 
     # Print the result
-    print(result)
+    metric = result[0]
+    print(f'{metric.timestamp} {metric.value}')
 
     # Sleep for the polling interval
     time.sleep(poll_interval)
