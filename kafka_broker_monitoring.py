@@ -52,7 +52,10 @@ class KafkaBroker:
                 "Young Generation GC Time":"java.lang:type=GarbageCollector,name=G1 Young Generation/CollectionTime",
                 "Old Generation GC Count":"java.lang:type=GarbageCollector,name=G1 Old Generation/CollectionCount",
                 "Old Generation GC Time":"java.lang:type=GarbageCollector,name=G1 Old Generation/CollectionTime",
-                f"Log End Offset(Partition : {self.kafka_consumer_partition})":f"kafka.log:type=Log,name=LogEndOffset,topic={self.kafka_topic_name},partition={self.kafka_consumer_partition}"
+                f"Log End Offset(Partition : {self.kafka_consumer_partition})":f"kafka.log:type=Log,name=LogEndOffset,topic={self.kafka_topic_name},partition={self.kafka_consumer_partition}",
+                "NumOffsets": "kafka.coordinator.group:type=GroupMetadataManager,name=NumOffsets",
+                "log": "kafka.log:type=Log,name=LogEndOffset,topic=*,partition=*",
+                # kafka.controller:type=KafkaController,name=GlobalTopicCount
             }
             for key, value in metric_queries.items():
                 jmx_query = [jmx.JMXQuery(value)]
@@ -62,7 +65,6 @@ class KafkaBroker:
                     continue
                 self.main_data[key]=metric_result[0].value
             self.main_data["Topic Name"]=self.kafka_topic_name
-            self.main_data["Partition No."]=f"Partition No : {self.kafka_consumer_partition}"
 
             applog = {}
             if(self.logsenabled in ['True', 'true', '1']):
